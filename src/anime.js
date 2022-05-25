@@ -140,6 +140,15 @@ function timeline(params = {}) {
     if (tl.autoplay) tl.play();
     return tl;
   };
+  tl.call = function (a) {
+    if (is.fnc(a)) a();
+    return tl;
+  };
+  const killIns = tl.kill;
+  tl.kill = function () {
+    tl = killIns();
+    return null;
+  };
   return tl;
 }
 
