@@ -117,20 +117,61 @@ function stagger(val, params = {}) {
 function timeline(params = {}) {
   let tl = animate(params);
   tl.duration = 0;
-  tl.add = function (instanceParams, timelineOffset) {
-    const tlIndex = activeInstances.indexOf(tl);
+  tl.add = function (input, timelineOffset) {
     const children = tl.children;
-    if (tlIndex > -1) activeInstances.splice(tlIndex, 1);
-    let insParams = mergeObjects(instanceParams, replaceObjectProps(defaultTweenSettings, params));
-    insParams.targets = insParams.targets || params.targets;
-    const tlDuration = tl.duration;
-    insParams.autoplay = false;
-    insParams.direction = tl.direction;
-    insParams.timelineOffset = is.und(timelineOffset) ? tlDuration : getRelativeValue(timelineOffset, tlDuration);
-    tl.seekSilently(insParams.timelineOffset);
-    const ins = animate(insParams);
-    const totalDuration = ins.duration + insParams.timelineOffset;
-    children.push(ins);
+
+    removeInsFromActiveInstances(tl);
+
+    let insParams = {};
+    let insChild = {};
+
+    const setInsParams = (ins) => {
+      ins.parent && removeInsFromParent(ins);
+      ins.parent = tl;
+      ins.autoplay = false;
+      ins.direction = ins.reversed ? 'reverse' : 'normal';
+      ins.loop = ins.reversed ? 0 : 1; // because the reversed instance at reset gets incremented
+      ins.timelineOffset = is.und(timelineOffset) ? tlDuration : getRelativeValue(timelineOffset, tlDuration);
+    };
+
+    switch (true) {
+      case is.anime(input) || is.tl(input):
+        //Adding anime instance OR timeline
+        insChild = input;
+        removeInsFromActiveInstances(insChild);
+        setInsParams(insChild);
+        insChild.reversedInTl = insChild.reversed;
+
+        tl.seekSilently(insChild.timelineOffset);
+        break;
+      case is.fnc(input):
+        // Adding a function
+        insParams = {
+          targets: { x: 0 },
+          duration: 0.001,
+          x: 1,
+          begin: input,
+        };
+        insParams = mergeObjects(insParams, defaultTweenSettings);
+        setInsParams(insParams);
+
+        tl.seekSilently(insParams.timelineOffset);
+
+        insChild = anime(insParams);
+        break;
+      case is.obj(input):
+        //anime init params
+        insParams = mergeObjects(input, replaceObjectProps(defaultTweenSettings, params));
+        insParams.targets = insParams.targets || params.targets;
+        setInsParams(insParams);
+
+        tl.seekSilently(insParams.timelineOffset);
+
+        insChild = anime(insParams);
+        break;
+    }
+
+    children.push(insChild);
     const timings = getTimingsFromAnimations(children, params);
     tl.delay = timings.delay;
     tl.endDelay = timings.endDelay;

@@ -262,7 +262,7 @@ export function animate(params = {}) {
 
   instance.seekSilently = function (time) {
     // const insTime = adjustTime(time);
-    if (instance.children) {
+    if (instance.children.length) {
       syncInstanceChildren(time, true);
     }
     setAnimationsProgress(time);
