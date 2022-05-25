@@ -1,4 +1,4 @@
-import { defaultInstanceSettings, defaultTweenSettings } from './consts.js';
+import { defaultInstanceSettings, defaultTweenSettings, settings } from './consts.js';
 
 import {
   clamp,
@@ -214,7 +214,7 @@ function setTargetsValue(targets, properties) {
 const anime = animate;
 
 anime.version = '__packageVersion__';
-anime.speed = 1;
+anime.speed = (newValue) => (settings.speed = newValue);
 anime.suspendWhenDocumentHidden = true;
 anime.running = activeInstances;
 anime.remove = removeTargetsFromActiveInstances;
