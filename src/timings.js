@@ -1,13 +1,15 @@
+import { settings } from './consts';
+
 export function getTimingsFromAnimations(animations, tweenSettings) {
   const animationsLength = animations.length;
   const { delay, duration, endDelay } = tweenSettings;
 
   if (!animationsLength) {
     return {
-      delay, 
+      delay,
       duration: delay + duration + endDelay,
-      endDelay
-    }
+      endDelay,
+    };
   }
 
   const timings = {};
@@ -32,4 +34,18 @@ export function getTimingsFromAnimations(animations, tweenSettings) {
   timings.endDelay = timings.duration - timings.endDelay;
 
   return timings;
+}
+
+//Calculate time between two frames
+let count = 0;
+let prevTime = 0;
+export function setTimeBtwnEachFrame(time = 0) {
+  let now = time;
+  let diff = now - prevTime;
+  prevTime = now;
+  count++;
+  if (diff > 0 && count > 30) {
+    settings.timeBtwnEachFrame = diff;
+  }
+  requestAnimationFrame(setTimeBtwnEachFrame);
 }

@@ -1,7 +1,4 @@
-import {
-  defaultInstanceSettings,
-  defaultTweenSettings,
-} from './consts.js';
+import { defaultInstanceSettings, defaultTweenSettings } from './consts.js';
 
 import {
   clamp,
@@ -16,16 +13,8 @@ import {
   mergeObjects,
 } from './helpers.js';
 
-import {
-  parseEasings,
-  penner,
-  spring,
-} from './easings.js';
-
-import {
-  getUnit,
-  convertPxToUnit,
-} from './units.js';
+import { parseEasings, penner, spring } from './easings.js';
+import { getUnit, convertPxToUnit } from './units.js';
 
 import {
   getOriginalTargetValue,
@@ -37,39 +26,17 @@ import {
   validateValue,
   decomposeValue,
 } from './values.js';
-
-import {
-  setDashoffset,
-  getPath,
-  getPathProgress,
-} from './svg.js';
-
-import {
-  parseTargets,
-  getAnimatables,
-} from './animatables.js';
-
-import {
-  getTimingsFromAnimations,
-} from './timings.js';
-
-import {
-  createTimeline,
-} from './timelines.js';
-
-import {
-  startEngine,
-  activeInstances,
-} from './engine.js';
-
-import {
-  animate,
-} from './animate.js';
+import { setDashoffset, getPath, getPathProgress } from './svg.js';
+import { parseTargets, getAnimatables } from './animatables.js';
+import { getTimingsFromAnimations, setTimeBtwnEachFrame } from './timings.js';
+import { createTimeline } from './timelines.js';
+import { startEngine, activeInstances } from './engine.js';
+import { animate } from './animate.js';
 
 // Remove targets from animation
 
 function removeTargetsFromAnimations(targetsArray, animations) {
-  for (let a = animations.length; a--;) {
+  for (let a = animations.length; a--; ) {
     if (arrayContains(targetsArray, animations[a].animatable.target)) {
       animations.splice(a, 1);
     }
@@ -80,7 +47,7 @@ function removeTargetsFromInstance(targetsArray, instance) {
   const animations = instance.animations;
   const children = instance.children;
   removeTargetsFromAnimations(targetsArray, animations);
-  for (let c = children.length; c--;) {
+  for (let c = children.length; c--; ) {
     const child = children[c];
     const childAnimations = child.animations;
     removeTargetsFromAnimations(targetsArray, childAnimations);
@@ -91,7 +58,7 @@ function removeTargetsFromInstance(targetsArray, instance) {
 
 function removeTargetsFromActiveInstances(targets) {
   const targetsArray = parseTargets(targets);
-  for (let i = activeInstances.length; i--;) {
+  for (let i = activeInstances.length; i--; ) {
     const instance = activeInstances[i];
     removeTargetsFromInstance(targetsArray, instance);
   }
@@ -124,10 +91,10 @@ function stagger(val, params = {}) {
         if (!grid) {
           values.push(Math.abs(fromIndex - index));
         } else {
-          const fromX = !fromCenter ? fromIndex%grid[0] : (grid[0]-1)/2;
-          const fromY = !fromCenter ? Math.floor(fromIndex/grid[0]) : (grid[1]-1)/2;
-          const toX = index%grid[0];
-          const toY = Math.floor(index/grid[0]);
+          const fromX = !fromCenter ? fromIndex % grid[0] : (grid[0] - 1) / 2;
+          const fromY = !fromCenter ? Math.floor(fromIndex / grid[0]) : (grid[1] - 1) / 2;
+          const toX = index % grid[0];
+          const toY = Math.floor(index / grid[0]);
           const distanceX = fromX - toX;
           const distanceY = fromY - toY;
           let value = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
@@ -137,12 +104,12 @@ function stagger(val, params = {}) {
         }
         maxValue = Math.max(...values);
       }
-      if (easing) values = values.map(val => easing(val / maxValue) * maxValue);
-      if (direction === 'reverse') values = values.map(val => axis ? (val < 0) ? val * -1 : -val : Math.abs(maxValue - val));
+      if (easing) values = values.map((val) => easing(val / maxValue) * maxValue);
+      if (direction === 'reverse') values = values.map((val) => (axis ? (val < 0 ? val * -1 : -val) : Math.abs(maxValue - val)));
     }
     const spacing = isRange ? (val2 - val1) / maxValue : val1;
-    return start + (spacing * (Math.round(values[i] * 100) / 100)) + unit;
-  }
+    return start + spacing * (Math.round(values[i] * 100) / 100) + unit;
+  };
 }
 
 // Timeline
@@ -150,7 +117,7 @@ function stagger(val, params = {}) {
 function timeline(params = {}) {
   let tl = animate(params);
   tl.duration = 0;
-  tl.add = function(instanceParams, timelineOffset) {
+  tl.add = function (instanceParams, timelineOffset) {
     const tlIndex = activeInstances.indexOf(tl);
     const children = tl.children;
     if (tlIndex > -1) activeInstances.splice(tlIndex, 1);
@@ -172,7 +139,7 @@ function timeline(params = {}) {
     tl.reset();
     if (tl.autoplay) tl.play();
     return tl;
-  }
+  };
   return tl;
 }
 
@@ -180,7 +147,7 @@ function timeline(params = {}) {
 
 function setTargetsValue(targets, properties) {
   const animatables = getAnimatables(targets);
-  animatables.forEach(animatable => {
+  animatables.forEach((animatable) => {
     for (let property in properties) {
       const value = getFunctionValue(properties[property], animatable);
       const target = animatable.target;
@@ -193,6 +160,8 @@ function setTargetsValue(targets, properties) {
     }
   });
 }
+
+setTimeBtwnEachFrame();
 
 const anime = animate;
 

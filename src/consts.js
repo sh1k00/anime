@@ -19,7 +19,9 @@ export const defaultInstanceSettings = {
   direction: 'normal',
   autoplay: true,
   timelineOffset: 0,
-}
+  parent: null,
+  timeScale: 1,
+};
 
 export const defaultTweenSettings = {
   duration: 1000,
@@ -27,14 +29,15 @@ export const defaultTweenSettings = {
   endDelay: 0,
   easing: 'easeOutElastic(1, .5)',
   round: 0,
-}
+};
 
 // Global settings
 
 export const settings = {
   speed: 1,
   suspendWhenDocumentHidden: true,
-}
+  timeBtwnEachFrame: 16.7,
+};
 
 // Transforms
 

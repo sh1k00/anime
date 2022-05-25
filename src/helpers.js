@@ -1,10 +1,4 @@
-import {
-  defaultInstanceSettings,
-  defaultTweenSettings,
-  hexTestRgx,
-  rgbTestRgx,
-  hslTestRgx,
-} from './consts.js';
+import { defaultInstanceSettings, defaultTweenSettings, hexTestRgx, rgbTestRgx, hslTestRgx } from './consts.js';
 
 // Strings functions
 
@@ -12,7 +6,7 @@ export function selectString(str) {
   try {
     let nodes = document.querySelectorAll(str);
     return nodes;
-  } catch(e) {
+  } catch (e) {
     return;
   }
 }
@@ -38,22 +32,24 @@ export function random(min, max) {
 // Types
 
 export const is = {
-  arr: a => Array.isArray(a),
-  obj: a => stringContains(Object.prototype.toString.call(a), 'Object'),
-  pth: a => is.obj(a) && a.hasOwnProperty('totalLength'),
-  svg: a => a instanceof SVGElement,
-  inp: a => a instanceof HTMLInputElement,
-  dom: a => a.nodeType || is.svg(a),
-  str: a => typeof a === 'string',
-  fnc: a => typeof a === 'function',
-  und: a => typeof a === 'undefined',
-  nil: a => is.und(a) || a === null,
-  hex: a => hexTestRgx.test(a),
-  rgb: a => rgbTestRgx.test(a),
-  hsl: a => hslTestRgx.test(a),
-  col: a => (is.hex(a) || is.rgb(a) || is.hsl(a)),
-  key: a => !defaultInstanceSettings.hasOwnProperty(a) && !defaultTweenSettings.hasOwnProperty(a) && a !== 'targets' && a !== 'keyframes'
-}
+  arr: (a) => Array.isArray(a),
+  obj: (a) => stringContains(Object.prototype.toString.call(a), 'Object'),
+  pth: (a) => is.obj(a) && a.hasOwnProperty('totalLength'),
+  svg: (a) => a instanceof SVGElement,
+  inp: (a) => a instanceof HTMLInputElement,
+  dom: (a) => a.nodeType || is.svg(a),
+  str: (a) => typeof a === 'string',
+  fnc: (a) => typeof a === 'function',
+  und: (a) => typeof a === 'undefined',
+  nil: (a) => is.und(a) || a === null,
+  hex: (a) => hexTestRgx.test(a),
+  rgb: (a) => rgbTestRgx.test(a),
+  hsl: (a) => hslTestRgx.test(a),
+  col: (a) => is.hex(a) || is.rgb(a) || is.hsl(a),
+  key: (a) => !defaultInstanceSettings.hasOwnProperty(a) && !defaultTweenSettings.hasOwnProperty(a) && a !== 'targets' && a !== 'keyframes',
+  anime: (a) => is.obj(a) && a.hasOwnProperty('animatables') && !a.hasOwnProperty('add'),
+  tl: (a) => is.obj(a) && a.hasOwnProperty('add') && is.fnc(a.add),
+};
 
 // Arrays
 
@@ -84,7 +80,7 @@ export function toArray(o) {
 }
 
 export function arrayContains(arr, val) {
-  return arr.some(a => a === val);
+  return arr.some((a) => a === val);
 }
 
 // Objects
