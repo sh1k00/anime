@@ -1,14 +1,10 @@
 import { settings } from './consts.js';
-
 import { clamp, filterArray } from './helpers.js';
-
 import { createTimeline } from './timelines.js';
-
 import { setValueByType } from './values.js';
-
 import { startEngine, activeInstances } from './engine.js';
-
 import { getPathProgress } from './svg.js';
+import { removeInsFromActiveInstances } from './utils.js';
 
 export function animate(params = {}) {
   let startTime = 0,
@@ -326,6 +322,21 @@ export function animate(params = {}) {
   instance.remove = function (targets) {
     const targetsArray = parseTargets(targets);
     removeTargetsFromInstance(targetsArray, instance);
+    return instance;
+  };
+
+  instance.kill = function () {
+    //Remove from activeInstances
+    removeInsFromActiveInstances(instance);
+
+    instance.children.forEach((child) => child.parent === instance && (child.parent = null));
+    instance.children = [];
+    instance.killed = true;
+    instance.parent && (instance.parent.updateChildren = true);
+    return null;
+  };
+  instance.speed = function (value) {
+    instance.timeScale = value;
     return instance;
   };
 

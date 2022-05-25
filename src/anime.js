@@ -28,7 +28,7 @@ import {
 } from './values.js';
 import { setDashoffset, getPath, getPathProgress } from './svg.js';
 import { parseTargets, getAnimatables } from './animatables.js';
-import { getTimingsFromAnimations, setTimeBtwnEachFrame } from './timings.js';
+import { getTimingsFromAnimations } from './timings.js';
 import { createTimeline } from './timelines.js';
 import { startEngine, activeInstances } from './engine.js';
 import { animate } from './animate.js';
@@ -160,8 +160,6 @@ function setTargetsValue(targets, properties) {
     }
   });
 }
-
-setTimeBtwnEachFrame();
 
 const anime = animate;
 
