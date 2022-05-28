@@ -4,14 +4,13 @@ import { createTimeline } from './timelines.js';
 import { setValueByType } from './values.js';
 import { startEngine, activeInstances } from './engine.js';
 import { getPathProgress } from './svg.js';
-import { removeInsFromActiveInstances } from './utils.js';
+import { removeInsFromActiveInstances, removeTargetsFromInstance } from './utils.js';
+import { parseTargets } from './animatables.js';
 
 export function animate(params = {}) {
   let startTime = 0,
     lastTime = 0,
     now = 0;
-  let children,
-    childrenLength = 0;
   let resolve = null;
 
   function makePromise(instance) {
@@ -69,9 +68,9 @@ export function animate(params = {}) {
       delete instance.updateChildren;
     }
     if (!instance.reversePlayback) {
-      for (let i = 0; i < childrenLength; i++) seekChild(time, children[i], muteCallbacks);
+      for (let i = 0; i < instance.children.length; i++) seekChild(time, instance.children[i], muteCallbacks);
     } else {
-      for (let i = childrenLength; i--; ) seekChild(time, children[i], muteCallbacks);
+      for (let i = instance.children.length; i--; ) seekChild(time, instance.children[i], muteCallbacks);
     }
   }
 
@@ -175,8 +174,7 @@ export function animate(params = {}) {
 
     beginInstance(instance.begin, insTime, insDuration);
     beginInstance(instance.loopBegin, insTime, insDuration, 'loopBegan');
-
-    if (childrenLength) {
+    if (instance.children.length) {
       syncInstanceChildren(insTime);
     }
     if (insTime <= insDelay && instance.currentTime !== 0) {
@@ -239,8 +237,7 @@ export function animate(params = {}) {
     instance.reversePlayback = false;
     instance.reversed = direction === 'reverse';
     instance.remainingLoops = instance.loop;
-    childrenLength = instance.children.length;
-    for (let i = childrenLength; i--; ) instance.children[i].reset();
+    for (let i = instance.children.length; i--; ) instance.children[i].reset();
     if ((instance.reversed && instance.loop !== true) || (direction === 'alternate' && instance.loop === 1)) instance.remainingLoops++;
     setAnimationsProgress(instance.reversed ? instance.duration : 0);
     return instance;
@@ -261,7 +258,6 @@ export function animate(params = {}) {
   };
 
   instance.seekSilently = function (time) {
-    // const insTime = adjustTime(time);
     if (instance.children.length) {
       syncInstanceChildren(time, true);
     }

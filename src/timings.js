@@ -39,14 +39,14 @@ export function getTimingsFromAnimations(animations, tweenSettings) {
 //Calculate time between two frames
 let count = 0;
 let prevTime = 0;
-function setTimeBtwnEachFrame(time = 0) {
+export function setTimeBtwnEachFrame(time = 0) {
   let now = time;
   let diff = now - prevTime;
   prevTime = now;
   count++;
-  if (diff > 0 && count > 30) {
+  if (diff > 0 && count >= 30) {
     settings.timeBtwnEachFrame = diff;
+    return;
   }
   requestAnimationFrame(setTimeBtwnEachFrame);
 }
-setTimeBtwnEachFrame();

@@ -1,15 +1,15 @@
 {
-  "name": "animejs",
+  "name": "@sherifmagdy/animejs",
   "version": "3.3.0",
   "homepage": "https://animejs.com",
-  "repository": "juliangarnier/anime",
+  "repository": "sherif-magdy/anime",
   "description": "JavaScript animation engine",
   "main": "lib/anime.umd.js",
   "module": "lib/anime.esm.js",
   "license": "MIT",
-  "author": "Julian Garnier <hello@julian.gr>",
+  "author": "Sherif magdy <eng.sherifmagdy.w@gmail.com>",
   "bugs": {
-    "url": "https://github.com/juliangarnier/anime/issues"
+    "url": "https://github.com/sherif-magdy/anime/issues"
   },
   "files": [
     "lib"

@@ -30,7 +30,7 @@ Via npm
 $ npm install animejs --save
 ```
 
-or manual [download](https://github.com/juliangarnier/anime/archive/master.zip).
+or manual [download](https://github.com/sherif-magdy/anime/archive/master.zip).
 
 ### Usage
 
@@ -62,48 +62,48 @@ anime({
   translateX: 250,
   rotate: '1turn',
   backgroundColor: '#FFF',
-  duration: 800
+  duration: 800,
 });
 ```
 
 ## [Documentation](https://animejs.com/documentation/)
 
-* [Targets](https://animejs.com/documentation/#cssSelector)
-* [Properties](https://animejs.com/documentation/#cssProperties)
-* [Property parameters](https://animejs.com/documentation/#duration)
-* [Animation parameters](https://animejs.com/documentation/#direction)
-* [Values](https://animejs.com/documentation/#unitlessValue)
-* [Keyframes](https://animejs.com/documentation/#animationKeyframes)
-* [Staggering](https://animejs.com/documentation/#staggeringBasics)
-* [Timeline](https://animejs.com/documentation/#timelineBasics)
-* [Controls](https://animejs.com/documentation/#playPause)
-* [Callbacks and promises](https://animejs.com/documentation/#update)
-* [SVG Animations](https://animejs.com/documentation/#motionPath)
-* [Easing functions](https://animejs.com/documentation/#linearEasing)
-* [Helpers](https://animejs.com/documentation/#remove)
+- [Targets](https://animejs.com/documentation/#cssSelector)
+- [Properties](https://animejs.com/documentation/#cssProperties)
+- [Property parameters](https://animejs.com/documentation/#duration)
+- [Animation parameters](https://animejs.com/documentation/#direction)
+- [Values](https://animejs.com/documentation/#unitlessValue)
+- [Keyframes](https://animejs.com/documentation/#animationKeyframes)
+- [Staggering](https://animejs.com/documentation/#staggeringBasics)
+- [Timeline](https://animejs.com/documentation/#timelineBasics)
+- [Controls](https://animejs.com/documentation/#playPause)
+- [Callbacks and promises](https://animejs.com/documentation/#update)
+- [SVG Animations](https://animejs.com/documentation/#motionPath)
+- [Easing functions](https://animejs.com/documentation/#linearEasing)
+- [Helpers](https://animejs.com/documentation/#remove)
 
 ## [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/)
 
-* [CodePen demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/)
-* [juliangarnier.com](http://juliangarnier.com)
-* [animejs.com](https://animejs.com)
-* [Moving letters](http://tobiasahlin.com/moving-letters/) by [@tobiasahlin](https://twitter.com/tobiasahlin)
-* [Gradient topography animation](https://tympanus.net/Development/GradientTopographyAnimation/) by [@crnacura](https://twitter.com/crnacura)
-* [Organic shape animations](https://tympanus.net/Development/OrganicShapeAnimations/) by [@crnacura](https://twitter.com/crnacura)
-* [Pieces slider](https://tympanus.net/Tutorials/PiecesSlider/) by [@lmgonzalves](https://twitter.com/lmgonzalves)
-* [Staggering animations](https://codepen.io/juliangarnier/pen/4fe31bbe8579a256e828cd4d48c86182?editors=0100)
-* [Easings animations](https://codepen.io/juliangarnier/pen/444ed909fd5de38e3a77cc6e95fc1884)
-* [Sphere animation](https://codepen.io/juliangarnier/pen/b3bb8ca599ad0f9d00dd044e56cbdea5?editors=0010)
-* [Layered animations](https://codepen.io/juliangarnier/pen/6ca836535cbea42157d1b8d56d00be84?editors=0010)
-* [anime.js logo animation](https://codepen.io/juliangarnier/pen/d43e8ec355c30871cbe775193255d6f6?editors=0010)
-
+- [CodePen demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/)
+- [sunshine-themes.com](http://sunshine-themes.com)
+- [juliangarnier.com](http://juliangarnier.com)
+- [animejs.com](https://animejs.com)
+- [Moving letters](http://tobiasahlin.com/moving-letters/) by [@tobiasahlin](https://twitter.com/tobiasahlin)
+- [Gradient topography animation](https://tympanus.net/Development/GradientTopographyAnimation/) by [@crnacura](https://twitter.com/crnacura)
+- [Organic shape animations](https://tympanus.net/Development/OrganicShapeAnimations/) by [@crnacura](https://twitter.com/crnacura)
+- [Pieces slider](https://tympanus.net/Tutorials/PiecesSlider/) by [@lmgonzalves](https://twitter.com/lmgonzalves)
+- [Staggering animations](https://codepen.io/juliangarnier/pen/4fe31bbe8579a256e828cd4d48c86182?editors=0100)
+- [Easings animations](https://codepen.io/juliangarnier/pen/444ed909fd5de38e3a77cc6e95fc1884)
+- [Sphere animation](https://codepen.io/juliangarnier/pen/b3bb8ca599ad0f9d00dd044e56cbdea5?editors=0010)
+- [Layered animations](https://codepen.io/juliangarnier/pen/6ca836535cbea42157d1b8d56d00be84?editors=0010)
+- [anime.js logo animation](https://codepen.io/juliangarnier/pen/d43e8ec355c30871cbe775193255d6f6?editors=0010)
 
 ## Browser support
 
 | Chrome | Safari | IE / Edge | Firefox | Opera |
-| --- | --- | --- | --- | --- |
-| 24+ | 8+ | 11+ | 32+ | 15+ |
+| ------ | ------ | --------- | ------- | ----- |
+| 24+    | 8+     | 11+       | 32+     | 15+   |
 
 ## <a href="https://animejs.com"><img src="/documentation/assets/img/animejs-v3-logo-animation.gif" width="150" alt="anime-js-v3-logo"/></a>
 
-[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2019 [Julian Garnier](http://juliangarnier.com).
+[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2019 [Sherif Magdy](http://sunshine-themes.com).

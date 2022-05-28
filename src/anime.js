@@ -28,41 +28,11 @@ import {
 } from './values.js';
 import { setDashoffset, getPath, getPathProgress } from './svg.js';
 import { parseTargets, getAnimatables } from './animatables.js';
-import { getTimingsFromAnimations } from './timings.js';
+import { getTimingsFromAnimations, setTimeBtwnEachFrame } from './timings.js';
 import { createTimeline } from './timelines.js';
 import { startEngine, activeInstances } from './engine.js';
 import { animate } from './animate.js';
-
-// Remove targets from animation
-
-function removeTargetsFromAnimations(targetsArray, animations) {
-  for (let a = animations.length; a--; ) {
-    if (arrayContains(targetsArray, animations[a].animatable.target)) {
-      animations.splice(a, 1);
-    }
-  }
-}
-
-function removeTargetsFromInstance(targetsArray, instance) {
-  const animations = instance.animations;
-  const children = instance.children;
-  removeTargetsFromAnimations(targetsArray, animations);
-  for (let c = children.length; c--; ) {
-    const child = children[c];
-    const childAnimations = child.animations;
-    removeTargetsFromAnimations(targetsArray, childAnimations);
-    if (!childAnimations.length && !child.children.length) children.splice(c, 1);
-  }
-  if (!animations.length && !children.length) instance.pause();
-}
-
-function removeTargetsFromActiveInstances(targets) {
-  const targetsArray = parseTargets(targets);
-  for (let i = activeInstances.length; i--; ) {
-    const instance = activeInstances[i];
-    removeTargetsFromInstance(targetsArray, instance);
-  }
-}
+import { removeInsFromActiveInstances, removeInsFromParent, removeTargetsFromActiveInstances } from './utils.js';
 
 // Stagger helpers
 
@@ -118,8 +88,6 @@ function timeline(params = {}) {
   let tl = animate(params);
   tl.duration = 0;
   tl.add = function (input, timelineOffset) {
-    const children = tl.children;
-
     removeInsFromActiveInstances(tl);
 
     let insParams = {};
@@ -131,7 +99,7 @@ function timeline(params = {}) {
       ins.autoplay = false;
       ins.direction = ins.reversed ? 'reverse' : 'normal';
       ins.loop = ins.reversed ? 0 : 1; // because the reversed instance at reset gets incremented
-      ins.timelineOffset = is.und(timelineOffset) ? tlDuration : getRelativeValue(timelineOffset, tlDuration);
+      ins.timelineOffset = is.und(timelineOffset) ? tl.duration : getRelativeValue(timelineOffset, tl.duration);
     };
 
     switch (true) {
@@ -171,8 +139,8 @@ function timeline(params = {}) {
         break;
     }
 
-    children.push(insChild);
-    const timings = getTimingsFromAnimations(children, params);
+    tl.children.push(insChild);
+    const timings = getTimingsFromAnimations(tl.children, params);
     tl.delay = timings.delay;
     tl.endDelay = timings.endDelay;
     tl.duration = timings.duration;
@@ -210,6 +178,8 @@ function setTargetsValue(targets, properties) {
     }
   });
 }
+
+setTimeBtwnEachFrame();
 
 const anime = animate;
 
