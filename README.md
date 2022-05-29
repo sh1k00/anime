@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://animejs.com"><img src="/documentation/assets/img/animejs-v3-header-animation.gif" width="250"/></a>
+  <a href="https://animejs.com"><img src="https://animejs.com/documentation/assets/img/animejs-v3-header-animation.gif" width="250"/></a>
   <br>
   anime.js
 </h1>
@@ -7,8 +7,8 @@
 <h4 align="center">JavaScript animation engine | <a href="https://animejs.com" target="_blank">animejs.com</a></h4>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/animejs" rel="nofollow"><img src="https://camo.githubusercontent.com/011820ee25bf1d3ddaf635d869903b98eccaeae7/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f616e696d656a732e7376673f7374796c653d666c61742d737175617265" alt="npm version" data-canonical-src="https://img.shields.io/npm/v/animejs.svg?style=flat-square" style="max-width:100%;"></a>
-  <a href="https://www.npmjs.com/package/animejs" rel="nofollow"><img src="https://camo.githubusercontent.com/3e9b69d51aee25fad784a3097676696096621d47/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f646d2f616e696d656a732e7376673f7374796c653d666c61742d737175617265" alt="npm downloads" data-canonical-src="https://img.shields.io/npm/dm/animejs.svg?style=flat-square" style="max-width:100%;"></a>
+  <a href="https://www.npmjs.com/package/@sherifmagdy/animejs" rel="nofollow"><img src="https://img.shields.io/badge/npm-v3.3.0-blue" alt="npm version" data-canonical-src="https://img.shields.io/badge/npm-v3.3.0-blue" style="max-width:100%;"></a>
+  <img src="https://img.shields.io/github/license/sherif-magdy/anime" alt="npm license" style="max-width:100%;">
 </p>
 
 <blockquote align="center">
@@ -54,6 +54,16 @@ Link `anime.es5.min.js` in your HTML :
 <script src="anime.es5.min.js"></script>
 ```
 
+### New Features
+
+- Improving timeline's add method to accept anime instance, timeline, function and instance parameters.
+- Add call method to the timeline.
+- Add kill method.
+- Add speed method.
+- restart, seek, play, pause, reverse, remove methods are now chainable in addition to speed and call methods.
+
+##### Sandbox demo to demonstrate the powerful of new features [here](https://codesandbox.io/s/threejs-with-anime-l0munm)
+
 ### Hello world
 
 ```javascript
@@ -85,7 +95,7 @@ anime({
 ## [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/)
 
 - [CodePen demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/)
-- [sunshine-themes.com](http://sunshine-themes.com)
+- [Sandbox demo](https://codesandbox.io/s/threejs-with-anime-l0munm)
 - [juliangarnier.com](http://juliangarnier.com)
 - [animejs.com](https://animejs.com)
 - [Moving letters](http://tobiasahlin.com/moving-letters/) by [@tobiasahlin](https://twitter.com/tobiasahlin)
@@ -104,6 +114,6 @@ anime({
 | ------ | ------ | --------- | ------- | ----- |
 | 24+    | 8+     | 11+       | 32+     | 15+   |
 
-## <a href="https://animejs.com"><img src="/documentation/assets/img/animejs-v3-logo-animation.gif" width="150" alt="anime-js-v3-logo"/></a>
+## <a href="https://animejs.com"><img src="https://animejs.com/documentation/assets/img/animejs-v3-logo-animation.gif" width="150" alt="anime-js-v3-logo"/></a>
 
-[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2019 [Sherif Magdy](http://sunshine-themes.com).
+[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2022 [Sherif Magdy](https://sunshine-themes.com).
