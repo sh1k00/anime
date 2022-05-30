@@ -58,9 +58,10 @@ Link `anime.es5.min.js` in your HTML :
 
 - Improving timeline's add method to accept anime instance, timeline, function and instance parameters.
 - Add call method to the timeline.
-- Add kill method.
-- Add speed method.
+- Add kill method to anime instance and timeline.
+- Add speed method to anime instance and timeline.
 - restart, seek, play, pause, reverse, remove methods are now chainable in addition to speed and call methods.
+- Add a reversed instance or timeline to a normal timeline.
 
 ##### Sandbox demo to demonstrate the powerful of new features [here](https://codesandbox.io/s/threejs-with-anime-l0munm)
 
