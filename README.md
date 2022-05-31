@@ -27,7 +27,7 @@
 Via npm
 
 ```bash
-$ npm install animejs --save
+$ npm install @sherifmagdy/animejs --save
 ```
 
 or manual [download](https://github.com/sherif-magdy/anime/archive/master.zip).
