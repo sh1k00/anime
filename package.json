@@ -25,16 +25,19 @@
     "canvas"
   ],
   "devDependencies": {
-    "jest": "^25.2.3",
-    "rollup": "^1.0.0",
-    "@rollup/plugin-buble": "^0.21.3",
-    "@rollup/plugin-replace": "^2.3.3",
-    "rollup-plugin-notify": "^1.1.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/eslint-plugin": "^7.17.7",
+    "@babel/preset-env": "^7.18.2",
+    "esbuild": "^0.14.46",
+    "esbuild-plugin-babel": "^0.2.3",
+    "eslint": "^8.18.0",
+    "eslint-plugin-import": "^2.26.0",
+    "estrella": "^1.4.1",
+    "jest": "^25.2.3"
   },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "node esbuild.js",
+    "dev": "node esbuild.js -w",
     "test": "jest --watch"
   }
 }

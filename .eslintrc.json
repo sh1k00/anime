@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
+  },
+  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "requireConfigFile": false
+  },
+  "plugins": ["@babel/eslint-plugin", "import"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-extra-boolean-cast": "warn",
+    "new-cap": "error",
+    "no-invalid-this": "error",
+    "no-unused-expressions": "off",
+    "react/prop-types": "off",
+    "import/no-unresolved": "off",
+    "import/namespace": "warn",
+    "import/named": "warn",
+    "no-prototype-builtins": "warn"
+  },
+  "globals": {},
+  "overrides": []
+}

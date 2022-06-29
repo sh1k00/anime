@@ -1,6 +1,6 @@
 import { parseTargets } from './animatables';
 import { activeInstances } from './engine';
-import { arrayContains } from './helpers';
+import { arrayContains, filterArray, is } from './helpers';
 
 export function removeInsFromActiveInstances(ins) {
   const tlIndex = activeInstances.indexOf(ins);
@@ -51,3 +51,37 @@ export function removeTargetsFromActiveInstances(targets) {
     removeTargetsFromInstance(targetsArray, instance);
   }
 }
+//reset states at reverse
+export const resetStates = (instance) => {
+  const reset = (ins) => {
+    if (ins.completed) {
+      ins.began = false;
+      ins.completed = false;
+      ins.loopBegan = false;
+    } else if (ins.began) {
+      ins.began = false;
+      ins.loopBegan = false;
+    }
+  };
+  const resetChildrenStates = (parent) => {
+    const children = parent.children;
+    children.forEach((child) => {
+      reset(child);
+      if (child.children.length) resetChildrenStates(child);
+    });
+  };
+
+  reset(instance);
+  resetChildrenStates(instance);
+};
+
+export const parseTime = (time, ins) => {
+  if (!is.str(time)) return time;
+
+  let t = time;
+  if (ins.marks) {
+    const filtered = filterArray(ins.marks, (mark) => mark.name === t);
+    if (filtered.length > 0) t = filtered[0].time;
+  }
+  return t;
+};

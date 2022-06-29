@@ -4,7 +4,7 @@ import { createTimeline } from './timelines.js';
 import { setValueByType } from './values.js';
 import { startEngine, activeInstances } from './engine.js';
 import { getPathProgress } from './svg.js';
-import { removeInsFromActiveInstances, removeTargetsFromInstance } from './utils.js';
+import { parseTime, removeInsFromActiveInstances, removeTargetsFromInstance, resetStates } from './utils.js';
 import { parseTargets } from './animatables.js';
 
 export function animate(params = {}) {
@@ -253,7 +253,7 @@ export function animate(params = {}) {
   };
 
   instance.seek = function (time) {
-    setInstanceProgress(adjustTime(time));
+    setInstanceProgress(adjustTime(parseTime(time, instance)));
     return instance;
   };
 
@@ -283,29 +283,7 @@ export function animate(params = {}) {
   instance.reverse = function () {
     toggleInstanceDirection();
     resetTime();
-    const resetCallbacks = (instance) => {
-      const reset = (ins) => {
-        if (ins.completed) {
-          ins.began = false;
-          ins.completed = false;
-          ins.loopBegan = false;
-        } else if (ins.began) {
-          ins.began = false;
-          ins.loopBegan = false;
-        }
-      };
-      const resetChildrenCallbacks = (parent) => {
-        const children = parent.children;
-        children.forEach((child) => {
-          reset(child);
-          if (child.children.length) resetChildrenCallbacks(child);
-        });
-      };
-
-      reset(instance);
-      resetChildrenCallbacks(instance);
-    };
-    resetCallbacks(instance);
+    resetStates(instance);
     return instance;
   };
 

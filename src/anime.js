@@ -32,7 +32,7 @@ import { getTimingsFromAnimations, setTimeBtwnEachFrame } from './timings.js';
 import { createTimeline } from './timelines.js';
 import { startEngine, activeInstances } from './engine.js';
 import { animate } from './animate.js';
-import { removeInsFromActiveInstances, removeInsFromParent, removeTargetsFromActiveInstances } from './utils.js';
+import { parseTime, removeInsFromActiveInstances, removeInsFromParent, removeTargetsFromActiveInstances } from './utils.js';
 
 // Stagger helpers
 
@@ -99,7 +99,7 @@ function timeline(params = {}) {
       ins.autoplay = false;
       ins.direction = ins.reversed ? 'reverse' : 'normal';
       ins.loop = ins.reversed ? 0 : 1; // because the reversed instance at reset gets incremented
-      ins.timelineOffset = is.und(timelineOffset) ? tl.duration : getRelativeValue(timelineOffset, tl.duration);
+      ins.timelineOffset = is.und(timelineOffset) ? tl.duration : getRelativeValue(parseTime(timelineOffset, ins), tl.duration);
     };
 
     switch (true) {
@@ -149,6 +149,12 @@ function timeline(params = {}) {
     if (tl.autoplay) tl.play();
     return tl;
   };
+  tl.addMark = function (name) {
+    tl.marks.push({
+      name,
+      time: tl.duration,
+    });
+  };
   tl.call = function (a) {
     if (is.fnc(a)) a();
     return tl;
@@ -183,7 +189,7 @@ setTimeBtwnEachFrame();
 
 const anime = animate;
 
-anime.version = '__packageVersion__';
+anime.version = '3.3.0';
 anime.speed = (newValue) => (settings.speed = newValue);
 anime.suspendWhenDocumentHidden = true;
 anime.running = activeInstances;
