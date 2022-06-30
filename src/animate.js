@@ -4,8 +4,9 @@ import { createTimeline } from './timelines.js';
 import { setValueByType } from './values.js';
 import { startEngine, activeInstances } from './engine.js';
 import { getPathProgress } from './svg.js';
-import { parseTime, removeInsFromActiveInstances, removeTargetsFromInstance, resetStates } from './utils.js';
+import { removeInsFromActiveInstances, removeTargetsFromInstance, resetStates } from './utils.js';
 import { parseTargets } from './animatables.js';
+import { parseTime } from './timings.js';
 
 export function animate(params = {}) {
   let startTime = 0,

@@ -1,6 +1,6 @@
 import { parseTargets } from './animatables';
 import { activeInstances } from './engine';
-import { arrayContains, filterArray, is } from './helpers';
+import { arrayContains } from './helpers';
 
 export function removeInsFromActiveInstances(ins) {
   const tlIndex = activeInstances.indexOf(ins);
@@ -73,15 +73,4 @@ export const resetStates = (instance) => {
 
   reset(instance);
   resetChildrenStates(instance);
-};
-
-export const parseTime = (time, ins) => {
-  if (!is.str(time)) return time;
-
-  let t = time;
-  if (ins.marks) {
-    const filtered = filterArray(ins.marks, (mark) => mark.name === t);
-    if (filtered.length > 0) t = filtered[0].time;
-  }
-  return t;
 };

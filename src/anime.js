@@ -1,38 +1,17 @@
 import { defaultInstanceSettings, defaultTweenSettings, settings } from './consts.js';
 
-import {
-  clamp,
-  random,
-  is,
-  filterArray,
-  flattenArray,
-  toArray,
-  arrayContains,
-  cloneObject,
-  replaceObjectProps,
-  mergeObjects,
-} from './helpers.js';
+import { clamp, random, is, replaceObjectProps, mergeObjects } from './helpers.js';
 
-import { parseEasings, penner, spring } from './easings.js';
+import { parseEasings, penner } from './easings.js';
 import { getUnit, convertPxToUnit } from './units.js';
 
-import {
-  getOriginalTargetValue,
-  getElementTransforms,
-  getAnimationType,
-  getFunctionValue,
-  getRelativeValue,
-  setValueByType,
-  validateValue,
-  decomposeValue,
-} from './values.js';
-import { setDashoffset, getPath, getPathProgress } from './svg.js';
-import { parseTargets, getAnimatables } from './animatables.js';
-import { getTimingsFromAnimations, setTimeBtwnEachFrame } from './timings.js';
-import { createTimeline } from './timelines.js';
-import { startEngine, activeInstances } from './engine.js';
+import { getOriginalTargetValue, getAnimationType, getFunctionValue, getRelativeValue, setValueByType, validateValue } from './values.js';
+import { setDashoffset, getPath } from './svg.js';
+import { getAnimatables } from './animatables.js';
+import { getTimingsFromAnimations, parseTime, setTimeBtwnEachFrame } from './timings.js';
+import { activeInstances } from './engine.js';
 import { animate } from './animate.js';
-import { parseTime, removeInsFromActiveInstances, removeInsFromParent, removeTargetsFromActiveInstances } from './utils.js';
+import { removeInsFromActiveInstances, removeInsFromParent, removeTargetsFromActiveInstances } from './utils.js';
 
 // Stagger helpers
 
@@ -99,7 +78,7 @@ function timeline(params = {}) {
       ins.autoplay = false;
       ins.direction = ins.reversed ? 'reverse' : 'normal';
       ins.loop = ins.reversed ? 0 : 1; // because the reversed instance at reset gets incremented
-      ins.timelineOffset = is.und(timelineOffset) ? tl.duration : getRelativeValue(parseTime(timelineOffset, ins), tl.duration);
+      ins.timelineOffset = is.und(timelineOffset) ? tl.duration : getRelativeValue(parseTime(timelineOffset, tl), tl.duration);
     };
 
     switch (true) {
@@ -149,11 +128,14 @@ function timeline(params = {}) {
     if (tl.autoplay) tl.play();
     return tl;
   };
+
+  tl.marks = [];
   tl.addMark = function (name) {
     tl.marks.push({
       name,
       time: tl.duration,
     });
+    return tl;
   };
   tl.call = function (a) {
     if (is.fnc(a)) a();
@@ -206,4 +188,4 @@ anime.penner = penner;
 anime.clamp = clamp;
 anime.random = random;
 
-export default anime;
+export { anime as default };

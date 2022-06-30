@@ -1,4 +1,6 @@
 import { settings } from './consts';
+import { filterArray, is } from './helpers';
+import { validateValue } from './values';
 
 export function getTimingsFromAnimations(animations, tweenSettings) {
   const animationsLength = animations.length;
@@ -50,3 +52,21 @@ export function setTimeBtwnEachFrame(time = 0) {
   }
   requestAnimationFrame(setTimeBtwnEachFrame);
 }
+
+export const parseTime = (time, ins) => {
+  if (!is.str(time)) return time;
+
+  let t = time;
+  const isPercentage = t.includes('%');
+
+  if (isPercentage) {
+    const value = validateValue(t);
+    return ins.duration * (parseFloat(value) / 100);
+  }
+  if (!isPercentage && ins.marks) {
+    const filtered = filterArray(ins.marks, (mark) => mark.name === t);
+    if (filtered.length > 0) return filtered[0].time;
+  }
+
+  return t;
+};
