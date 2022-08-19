@@ -30,31 +30,60 @@ Via npm
 $ npm install @sherifmagdy/animejs --save
 ```
 
-or manual [download](https://github.com/sherif-magdy/anime/archive/master.zip).
+Via yarn
+
+```bash
+$ yarn add @sherifmagdy/animejs
+```
+
+or manual [download](https://www.jsdelivr.com/package/npm/@sherifmagdy/animejs).
 
 ### Usage
 
 #### ES6 modules
 
 ```javascript
-import anime from 'animejs/lib/anime.esm.js';
+import anime from '@sherifmagdy/animejs';
 ```
 
 #### CommonJS
 
 ```javascript
-const anime = require('anime');
+const { default: anime } = require('@sherifmagdy/animejs');
 ```
 
 #### Classic ES5 file include
 
-Link `anime.es5.min.js` in your HTML :
+Link `anime.browser.min.js` in your HTML :
 
 ```html
-<script src="anime.es5.min.js"></script>
+<script src="anime.browser.min.js"></script>
+<script>
+  const { default: anime } = anime;
+</script>
 ```
 
-### New Features
+#### Using a CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.1/lib/anime.browser.min.js"></script>
+<script>
+  const { default: anime } = anime;
+</script>
+```
+
+In case you are using modules in the browser:
+
+```html
+<script type="module">
+  import anime from 'https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.1/lib/anime.esm.browser.min.js';
+
+  //init
+  const animeInstance = anime(...);
+</script>
+```
+
+### New Features (v3.3)
 
 - Improving timeline's add method to accept anime instance, timeline, function and instance parameters.
 - Add call method to the timeline.
@@ -62,8 +91,10 @@ Link `anime.es5.min.js` in your HTML :
 - Add speed method to anime instance and timeline.
 - restart, seek, play, pause, reverse, remove methods are now chainable in addition to speed and call methods.
 - Add a reversed instance or timeline to a normal timeline.
+- Add addMark() and removeMark() methods to the timeline.
+- seek() method and [time offset parameter](https://animejs.com/documentation/#timelineOffsets) are now supporting adding a mark's name as a string.
 
-##### Sandbox demo to demonstrate the powerful of new features [here](https://codesandbox.io/s/threejs-with-anime-l0munm)
+##### Sandbox demo to highlight the powerful of the new features [here](https://codesandbox.io/s/threejs-with-anime-l0munm)
 
 ### Hello world
 

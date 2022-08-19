@@ -188,4 +188,4 @@ anime.penner = penner;
 anime.clamp = clamp;
 anime.random = random;
 
-export { anime as default };
+export default anime;

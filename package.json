@@ -4,10 +4,10 @@
   "homepage": "https://animejs.com",
   "repository": "sherif-magdy/anime",
   "description": "JavaScript animation engine",
-  "main": "lib/anime.umd.js",
-  "module": "lib/anime.esm.js",
+  "main": "./lib/anime.esm.js",
+  "module": "./lib/anime.esm.js",
   "license": "MIT",
-  "author": "Sherif magdy <eng.sherifmagdy.w@gmail.com>",
+  "author": "Sherif Magdy <eng.sherifmagdy.w@gmail.com>",
   "bugs": {
     "url": "https://github.com/sherif-magdy/anime/issues"
   },

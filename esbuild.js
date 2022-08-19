@@ -33,10 +33,11 @@ const banner = `/*
 
 import('esbuild-plugin-babel').then(({ default: babel }) => {
   const buildConfig = (format, target, minify) => {
-    const fileNameFormat = format === 'iife' ? 'es5' : format;
+    const browser = minify && 'es5' === target ? '.browser' : '';
     const fileNameMinify = minify ? '.min' : '';
+    const fileNameFormat = 'iife' === format ? '' : format;
     const plugins = target === 'es5' ? [babel(babelConfig)] : [];
-    const outfileName = `lib/anime.${fileNameFormat}${fileNameMinify}.js`;
+    const outfileName = `lib/anime.${fileNameFormat}${browser}${fileNameMinify}.js`;
     return {
       globalName: `anime`,
       entryPoints: [`src/anime.js`],
@@ -50,10 +51,10 @@ import('esbuild-plugin-babel').then(({ default: babel }) => {
     };
   };
 
-  build(buildConfig('iife', 'es5', false));
+  // build(buildConfig('iife', 'es5', false));
   build(buildConfig('iife', 'es5', true));
   build(buildConfig('esm', 'esnext', false));
-  build(buildConfig('esm', 'esnext', true));
+  build(buildConfig('esm', 'es5', true));
   build(buildConfig('cjs', 'esnext', false));
   build(buildConfig('cjs', 'esnext', true));
 });
