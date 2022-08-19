@@ -4,9 +4,7 @@ import { arrayContains } from './helpers';
 
 export function removeInsFromActiveInstances(ins) {
   const tlIndex = activeInstances.indexOf(ins);
-  if (tlIndex > -1) {
-    activeInstances.splice(tlIndex, 1);
-  }
+  ~tlIndex && activeInstances.splice(tlIndex, 1);
 }
 
 export function removeInsFromParent(ins) {

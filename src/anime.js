@@ -1,6 +1,6 @@
 import { defaultInstanceSettings, defaultTweenSettings, settings } from './consts.js';
 
-import { clamp, random, is, replaceObjectProps, mergeObjects } from './helpers.js';
+import { clamp, random, is, replaceObjectProps, mergeObjects, filterArray, arrayContains } from './helpers.js';
 
 import { parseEasings, penner } from './easings.js';
 import { getUnit, convertPxToUnit } from './units.js';
@@ -135,6 +135,17 @@ function timeline(params = {}) {
       name,
       time: tl.duration,
     });
+    return tl;
+  };
+  tl.removeMark = function (name) {
+    const filtered = filterArray(tl.marks, (mark) => mark.name === name);
+    if (filtered.length === 0) return;
+
+    for (let a = tl.marks.length; a--; ) {
+      if (filtered[0].name === tl.marks[a].name) {
+        tl.marks.splice(a, 1);
+      }
+    }
     return tl;
   };
   tl.call = function (a) {
