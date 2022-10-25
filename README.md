@@ -7,7 +7,7 @@
 <h4 align="center">JavaScript animation engine | <a href="https://animejs.com" target="_blank">animejs.com</a></h4>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@sherifmagdy/animejs" rel="nofollow"><img src="https://img.shields.io/badge/npm-v3.3.0-blue" alt="npm version" data-canonical-src="https://img.shields.io/badge/npm-v3.3.0-blue" style="max-width:100%;"></a>
+  <a href="https://www.npmjs.com/package/@sherifmagdy/animejs" rel="nofollow"><img src="https://img.shields.io/badge/npm-v3.3.1-blue" alt="npm version" data-canonical-src="https://img.shields.io/badge/npm-v3.3.1-blue" style="max-width:100%;"></a>
   <img src="https://img.shields.io/github/license/sherif-magdy/anime" alt="npm license" style="max-width:100%;">
 </p>
 

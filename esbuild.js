@@ -35,9 +35,9 @@ import('esbuild-plugin-babel').then(({ default: babel }) => {
   const buildConfig = (format, target, minify) => {
     const browser = minify && 'es5' === target ? '.browser' : '';
     const fileNameMinify = minify ? '.min' : '';
-    const fileNameFormat = 'iife' === format ? '' : format;
+    const fileNameFormat = 'iife' === format ? '' : `.${format}`;
     const plugins = target === 'es5' ? [babel(babelConfig)] : [];
-    const outfileName = `lib/anime.${fileNameFormat}${browser}${fileNameMinify}.js`;
+    const outfileName = `lib/anime${fileNameFormat}${browser}${fileNameMinify}.js`;
     return {
       globalName: `anime`,
       entryPoints: [`src/anime.js`],
