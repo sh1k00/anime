@@ -68,7 +68,7 @@ Link `anime.browser.min.js` in your HTML :
 #### Using a CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.1/lib/anime.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.3/lib/anime.browser.min.js"></script>
 <script>
   const { default: anime } = anime;
 </script>
@@ -78,7 +78,7 @@ In case you are using modules in the browser:
 
 ```html
 <script type="module">
-  import anime from 'https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.1/lib/anime.esm.browser.min.js';
+  import anime from 'https://cdn.jsdelivr.net/npm/@sherifmagdy/animejs@3.3.3/lib/anime.esm.browser.min.js';
 
   //init
   const animeInstance = anime(...);
