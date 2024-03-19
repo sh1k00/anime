@@ -289,4 +289,4 @@ seek() method & time offset parameter
 
 ## <a href="https://animejs.com"><img src="https://animejs.com/documentation/assets/img/animejs-v3-logo-animation.gif" width="150" alt="anime-js-v3-logo"/></a>
 
-[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2022 [Sherif Magdy](https://sunshine-themes.com).
+[Website](https://animejs.com/) | [Documentation](https://animejs.com/documentation/) | [Demos and examples](http://codepen.io/collection/b392d3a52d6abf5b8d9fda4e4cab61ab/) | [MIT License](LICENSE.md) | © 2024 [Sherif Magdy](https://sunshine-themes.com).
